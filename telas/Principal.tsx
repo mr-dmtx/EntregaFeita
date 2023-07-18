@@ -1,7 +1,8 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { Text, View, PermissionsAndroid, Image } from 'react-native';
+import { Text, View, PermissionsAndroid, Image, Linking } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
-import { Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {salvarEntrega} from '../classes/Entrega';
 import { Button } from '@rneui/themed';
@@ -33,13 +34,13 @@ function Principal(){
       console.warn(error);
     }
   };
-  
+
   async function getLocation() {
     Geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
         setbtnEntregaLoading(true);
-        
+
         salvarEntrega(latitude, longitude).then((r) => {setbtnEntregaLoading(false)});
       },
       (error) => {
@@ -47,7 +48,7 @@ function Principal(){
       },
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
     );
-  };  
+  };
 
   return (
     <View
@@ -63,7 +64,7 @@ function Principal(){
         }}
         source={require('../entregafeitafd2.png')}
       />
-      { !btnEntregaLoading ? 
+      { !btnEntregaLoading ?
         <Button
         title="Entrega Feita"
         buttonStyle={{
@@ -88,9 +89,9 @@ function Principal(){
           marginHorizontal: 50,
           marginVertical: 100,
         }}/>
-      
+
       }
-      
+
 
         <Text style={{
         color: 'black',
